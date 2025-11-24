@@ -6,7 +6,7 @@ This will be an evolving project that I will work on and add on too for a while.
 # Tech Stack
 I want to use the MERN stack for this project.
 
-![MERN stack](https://images.contentstack.io/v3/assets/blt7151619cb9560896/blt4b651817f6dec60f/666848e371203e8537986b38/mern-stack.png "MERN stack")
+![MERN stack](assets/img/mern-stack.png "MERN stack")
 
 some notes for me to remember
 
@@ -67,3 +67,6 @@ As an admin, I should be able to save blog posts as drafts because I may not wan
 
 As an admin, I should be able to manage tags or categories for projects because this improves organization and filtering.
 
+# Lofi Mockup
+
+![lofi mockup](assets/img/lofi_ms.png "lofi mockup")
