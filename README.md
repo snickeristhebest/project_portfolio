@@ -17,3 +17,9 @@ some notes for me to remember
 ## setup react app using
 
 `npx create-react-app project_portfolio`
+
+
+# Project summary
+
+I want to create an app that will showcase all of the projects that I am working on and have worked on. It would also be good to have some general information on who I am. 
+I could also add work experience, classes I have taken and their discriptions, extracuricular activities. There should be a way for we to add, edit, and delete projects, work experience, extracuricular activites, and the about section.  
