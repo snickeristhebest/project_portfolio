@@ -1,9 +1,13 @@
 name: Run Tests
 
+# have the workflow run on pushes to all feature brances so that you can see tests pass before creating PR
 on:
   push:
+    branches-ignore:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   test:
