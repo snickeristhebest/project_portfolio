@@ -1,5 +1,9 @@
 import { render, screen, fireEvent } from '@testing-library/react';
+import { MemoryRouter } from 'react-router-dom';
 import App from './App';
+import Home from './pages/Home';
+import { act } from 'react-dom/test-utils';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Mock react-confetti to avoid canvas issues in tests
 jest.mock('react-confetti', () => {
@@ -19,13 +23,21 @@ describe('App Component', () => {
   });
 
   test('renders Enter Site button on initial load', () => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
     const button = screen.getByText(/Enter Site/i);
     expect(button).toBeInTheDocument();
   });
 
   test('shows image after clicking Enter Site button', () => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
     
     // Initially, image should not be visible
     const image = screen.queryByAltText('face');
@@ -44,7 +56,11 @@ describe('App Component', () => {
     const playMock = jest.fn(() => Promise.resolve());
     window.HTMLMediaElement.prototype.play = playMock;
     
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
     
     const button = screen.getByText(/Enter Site/i);
     fireEvent.click(button);
@@ -53,7 +69,11 @@ describe('App Component', () => {
   });
 
   test('button disappears after clicking', () => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
     
     const button = screen.getByText(/Enter Site/i);
     fireEvent.click(button);
@@ -62,7 +82,11 @@ describe('App Component', () => {
   });
 
   test('shows confetti after entering site', () => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
     
     const button = screen.getByText(/Enter Site/i);
     fireEvent.click(button);
@@ -73,12 +97,45 @@ describe('App Component', () => {
   });
 
   test('image has growing class after entering site', () => {
-    render(<App />);
+    render(
+      <MemoryRouter>
+        <App />
+      </MemoryRouter>
+    );
     
     const button = screen.getByText(/Enter Site/i);
     fireEvent.click(button);
     
     const image = screen.getByAltText('face');
     expect(image).toHaveClass('growing');
+  });
+
+  test('splash routes to home after 3 seconds', async () => {
+    // Enable fake timers
+    jest.useFakeTimers();
+    
+    // Render the full routing setup
+    render(
+      <MemoryRouter initialEntries={['/']}>
+        <Routes>
+          <Route path="/" element={<App />} />
+          <Route path="/home" element={<Home />} />
+        </Routes>
+      </MemoryRouter>
+    );
+    
+    const button = screen.getByText(/Enter Site/i);
+    fireEvent.click(button);
+    
+    // Fast-forward 3 seconds
+    act(() => {
+      jest.advanceTimersByTime(3000);
+    });
+    
+    // Check if Home component content appears
+    expect(screen.getByText(/Welcome to My Portfolio/i)).toBeInTheDocument();
+    
+    // Clean up
+    jest.useRealTimers();
   });
 });
