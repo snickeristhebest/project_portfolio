@@ -1,0 +1,8 @@
+.fire-animation {
+  /* Size is controlled by width/height attributes or parent */
+
+  image-rendering: -moz-crisp-edges;
+  image-rendering: -webkit-crisp-edges;
+  image-rendering: pixelated;
+  image-rendering: crisp-edges;
+}
