@@ -5,6 +5,7 @@ import App from './App';
 import Home from './pages/Home';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,6 +15,7 @@ root.render(
         <Route path="/" element={<App />} />
         <Route path="/home" element={<Home />} />
         <Route path="/projects" element={<Home />} />
+        <Route path="/project_queue" element={<Home />} />
         <Route path="/work" element={<Home />} />
       </Routes>
     </BrowserRouter>

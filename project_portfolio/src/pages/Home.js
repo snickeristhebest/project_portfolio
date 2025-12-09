@@ -1,11 +1,12 @@
 //import navbar 
-import Navbar from '../components/navbar';
+import NavbarComponent from '../components/navbar';
+
 
 function Home() {
     return (
 
         <div className="home-container">
-            <Navbar />
+            <NavbarComponent />
             <h1>Welcome to My Portfolio</h1>
             <p>This is the home page of my project portfolio website.</p>
         </div>
