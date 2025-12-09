@@ -12,6 +12,13 @@ jest.mock('react-confetti', () => {
   };
 });
 
+// Mock Fire component to avoid canvas issues in tests
+jest.mock('./components/fire', () => {
+  return function MockFire() {
+    return <div data-testid="fire">Fire Mock</div>;
+  };
+});
+
 describe('App Component', () => {
   // Mock HTMLMediaElement.play before each test
   beforeEach(() => {
@@ -38,15 +45,15 @@ describe('App Component', () => {
         <App />
       </MemoryRouter>
     );
-    
+
     // Initially, image should not be visible
     const image = screen.queryByAltText('face');
     expect(image).not.toBeInTheDocument();
-    
+
     // Click the button
     const button = screen.getByText(/Enter Site/i);
     fireEvent.click(button);
-    
+
     // Now image should be visible
     const visibleImage = screen.getByAltText('face');
     expect(visibleImage).toBeInTheDocument();
@@ -55,16 +62,16 @@ describe('App Component', () => {
   test('plays audio when Enter Site button is clicked', () => {
     const playMock = jest.fn(() => Promise.resolve());
     window.HTMLMediaElement.prototype.play = playMock;
-    
+
     render(
       <MemoryRouter>
         <App />
       </MemoryRouter>
     );
-    
+
     const button = screen.getByText(/Enter Site/i);
     fireEvent.click(button);
-    
+
     expect(playMock).toHaveBeenCalled();
   });
 
@@ -74,10 +81,10 @@ describe('App Component', () => {
         <App />
       </MemoryRouter>
     );
-    
+
     const button = screen.getByText(/Enter Site/i);
     fireEvent.click(button);
-    
+
     expect(button).not.toBeInTheDocument();
   });
 
@@ -87,10 +94,10 @@ describe('App Component', () => {
         <App />
       </MemoryRouter>
     );
-    
+
     const button = screen.getByText(/Enter Site/i);
     fireEvent.click(button);
-    
+
     // Our mock confetti component should be rendered
     const confetti = screen.getByTestId('confetti');
     expect(confetti).toBeInTheDocument();
@@ -102,10 +109,10 @@ describe('App Component', () => {
         <App />
       </MemoryRouter>
     );
-    
+
     const button = screen.getByText(/Enter Site/i);
     fireEvent.click(button);
-    
+
     const image = screen.getByAltText('face');
     expect(image).toHaveClass('growing');
   });
@@ -113,7 +120,7 @@ describe('App Component', () => {
   test('splash routes to home after 3 seconds', async () => {
     // Enable fake timers
     jest.useFakeTimers();
-    
+
     // Render the full routing setup
     render(
       <MemoryRouter initialEntries={['/']}>
@@ -123,18 +130,18 @@ describe('App Component', () => {
         </Routes>
       </MemoryRouter>
     );
-    
+
     const button = screen.getByText(/Enter Site/i);
     fireEvent.click(button);
-    
+
     // Fast-forward 3 seconds
     act(() => {
       jest.advanceTimersByTime(3000);
     });
-    
+
     // Check if Home component content appears
     expect(screen.getByText(/Welcome to My Portfolio/i)).toBeInTheDocument();
-    
+
     // Clean up
     jest.useRealTimers();
   });
