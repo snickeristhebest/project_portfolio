@@ -67,6 +67,36 @@ As an admin, I should be able to save blog posts as drafts because I may not wan
 
 As an admin, I should be able to manage tags or categories for projects because this improves organization and filtering.
 
+as an admin, I should be able to create project ideas and put them on project queue
+
+as an admin, I should be able to remove project ideas 
+
+as an admin, I should be able to rewrite project ideas
+
+as an admin I should be able to drag on drop project ideas up or down onto the project queue
+
+as an admin I should be able to drag a project into main focus box from project queue
+
+as an adming I should be able to drag a project from main focus into the project queue area
+
 # Lofi Mockup
 
 ![lofi mockup](assets/img/lofi_ms.png "lofi mockup")
+
+# to use bootstrap with react use the bootstrap react npm package
+
+`npm install react-bootstrap bootstrap`
+
+in order to use react bootstrap library I have to downgrade react veersion to 18 instead of 19. 
+I could also use a different UI library but I already have some familiarity with bootstrap so I figured I would just continue with it.
+
+note* ignore above comment, I was just in the wrong directory when I tried to install the bootstrap package
+
+# [color pallete](https://colorhunt.co/palette/f259125c3e94412b6b211832)
+
+#F25912 - orange\
+#5C3E94 - light purple\
+#412B6B - medium dark purple\
+#211832 - dark purple
+
+
