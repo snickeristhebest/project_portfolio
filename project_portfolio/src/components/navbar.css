@@ -73,12 +73,19 @@
   white-space: nowrap;
 }
 
-/* Fire Animation */
-.fire-animation {
-  width: 40px;
-  height: 40px;
-  margin-top: 8px;
+.copy-alert {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background: #1e1e1e;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+  z-index: 9999;
 }
+
 
 /* Custom Nav Links */
 .nav-link-custom {
